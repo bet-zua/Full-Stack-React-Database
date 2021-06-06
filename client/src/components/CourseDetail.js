@@ -8,12 +8,13 @@ export default class Courses extends Component {
         course: {},
         user: {},
         id: this.props.match.params.id,
+        errors:[]
     }
 
     //Retreive data from the REST API when those components are mounted
     componentDidMount(){
-
         const context  =  this.props.context;
+
         context.data.getCourse( this.state.id )
         .then( course => {
             this.setState({
@@ -21,45 +22,51 @@ export default class Courses extends Component {
               user: course.User
           })
           //console.log(this.state.course)
-          //console.log(context.authenticatedUser);
+          console.log(this.props.context.authenticatedUser);
         })
-        .catch((error) => {
-            console.log(error);
+        .catch(err => {
             this.props.history.push('/notfound');
         })
 
     }
 
     //send a delete request to the api's /api/course/:is route when delete button is clicked
-    deleteCourse () {
-        const context = this.props.context;
-        const authUser = context.authenticatedUser;
+     deleteCourse () {
+        const { context } = this.props;
+		const authUser = context.authenticatedUser;
 
-        context.data.deleteCourse( this.state.id , authUser.emailAddress, authUser.password)
-        .then(errors => {
-            if (errors) {
-                this.setState({ errors });
-            } else {
-                console.log('Course deletion successful.');
-                this.props.history.push('/');
-            }
-        })
-        .catch((error) => { 
-            console.log(error);
+		context.data.deleteCourse(this.state.id, authUser.emailAddress, authUser.password)
+		.then(errors => {
+			if(errors.length){
+				this.setState({ errors })
+			} else {
+				console.log(`Course deletion successful.`);
+				this.props.history.push('/');
+			}
+		})
+        .catch(err => {
             this.props.history.push('/error');
         });
     }
 
     render() {
         const { course, user } = this.state; // always destructure for easy access!
+        const authUser = this.props.context.authenticatedUser; 
         return(
             <main>
             <div className="actions--bar">
+                {
+                (authUser !== null && authUser.emailAddress===user.emailAddress)?
                 <div className="wrap">
                     <NavLink className="button" to={`/courses/${course.id}/update`}>Update Course</NavLink>
                     <NavLink className="button" to="/" onClick={() => this.deleteCourse()}>Delete Course</NavLink>
                     <NavLink className="button button-secondary" to="/">Return to List</NavLink>
                 </div>
+                :
+                <div className="wrap">
+                <NavLink className="button button-secondary" to="/">Return to List</NavLink>
+                </div>
+                }
             </div>
             <div className="wrap">
                 <h2>Course Detail</h2>

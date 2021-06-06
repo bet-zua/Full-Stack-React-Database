@@ -102,3 +102,4 @@ dist
 
 # TernJS port file
 .tern-port
+TODOS.md $ git rm --cached TODOS.md rm TODOS.md $ git commit -m Start ignoring debug.log

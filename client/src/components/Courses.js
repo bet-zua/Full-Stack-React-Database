@@ -12,16 +12,14 @@ export default class Courses extends Component {
 
   //retreive the list of courses from the REST API's /api/courses route
   componentDidMount(){
-
     const context  =  this.props.context;
-    console.log(context);
+    
     context.data.getCourses()
     .then( courses => {
       this.setState({
         courses
     })})
     .catch((error) => {
-        console.log(error);
         this.props.history.push('/error');
     })
   }

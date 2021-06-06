@@ -9,19 +9,24 @@ export default class UpdateCourse extends Component {
         description: '',
         estimatedTime: '',
         materialsNeeded: '',
+        user: {},
         errors: [],
     }
 
     componentDidMount(){
         this.props.context.data.getCourse(this.props.match.params.id)
-        .then(response => {
+        .then(course => {
             this.setState({
-                title: response.title,
-                description: response.description,
-                estimatedTime: response.description,
-                materialsNeeded: response.materialsNeeded
-            })
-        })
+                title: course.title,
+                description: course.description,
+                estimatedTime: course.description,
+                materialsNeeded: course.materialsNeeded,
+                user: course.User,
+            });
+        })     
+		.catch(err => {
+            this.props.history.push('/error');
+		});
     }
 
     render() {
@@ -30,53 +35,58 @@ export default class UpdateCourse extends Component {
             description,
             estimatedTime,
             materialsNeeded,
+            user,
             errors,
         } = this.state;
         return (
             <main>
-                <div className="wrap">
-                    <h2>Update Course</h2>
+            <div className="wrap">
+                <h2>Update Course</h2>
+                <div className="main--flex">
                     <Form 
-                    cancel={this.cancel}
-                    errors={errors}
-                    submit={this.submit}
-                    submitButtonText="Update Course"
-                    elements={()=>(
-                        <React.Fragment>
-                            <label htmlFor="title">Course Title</label>
+                        cancel={this.cancel}
+                        errors={errors}
+                        submit={this.submit}
+                        submitButtonText="Update Course"
+                        elements={() => ( 
+                            <React.Fragment>
+                                <label htmlFor="title">Course Title</label>
                                 <input 
                                 id="title" 
                                 name="title" 
                                 type="text"
                                 value={title} 
                                 onChange={this.change} />
+                                <p>By {user.firstName} {user.lastName} </p>
                                 <label htmlFor="description">Course Description</label>
-                                <textarea 
-                                id="description" 
-                                name="description" 
+                                <textarea
+                                id="description"
+                                name="description"
                                 type="text"
-                                value={description} 
-                                onChange={this.change} />
-                        </React.Fragment>
-                    )}/>
-                     <div>
-                        <label htmlFor="estimatedTime">Estimated Time</label>
-                            <input 
-                            id="estimatedTime" 
-                            name="estimatedTime" 
-                            type="text"
-                            value={estimatedTime} 
-                            onChange={this.change} />
-                            <label htmlFor="materialsNeeded">Materials Needed</label>
-                            <textarea 
-                            id="materialsNeeded" 
-                            name="materialsNeeded" 
-                            type="text"
-                            value={materialsNeeded} 
-                            onChange={this.change} />
-                        </div>
+                                value={description}
+                                onChange={this.change}
+                                placeholder="Description" />
+                            </React.Fragment>
+                    )} />
+                    <div>
+                    <label htmlFor="estimatedTime">Estimated Time</label>
+                        <input 
+                        id="estimatedTime" 
+                        name="estimatedTime" 
+                        type="text"
+                        value={estimatedTime} 
+                        onChange={this.change} />
+                        <label htmlFor="materialsNeeded">Materials Needed</label>
+                        <textarea 
+                        id="materialsNeeded" 
+                        name="materialsNeeded" 
+                        type="text"
+                        value={materialsNeeded} 
+                        onChange={this.change} />
+                    </div>
                 </div>
-            </main>
+            </div>
+        </main>
         )
     }
 
@@ -116,8 +126,7 @@ export default class UpdateCourse extends Component {
             }
         })
         .catch( err => {
-            console.log(err);
-            this.props.history.push('/notfound');
+            this.props.history.push('/error');
         })
     } 
 

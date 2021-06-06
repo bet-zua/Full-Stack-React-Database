@@ -1,22 +1,25 @@
 /* This will be used to render the trouter that wraps the components of the app */
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-//helper components
+// import context
 import withContext from './Context';
-import PrivateRoute from './components/PrivateRoute';
 //import Components
 import Header from './components/Header';
 import Courses from './components/Courses';
+import PrivateRoute from './components/PrivateRoute';
 import CourseDetails from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
+import UnhandledError from './components/UnhandledError';
+import Forbidden from './components/Forbidden';
+import NotFound from './components/NotFound';
 
-
+/* Adding Context to the components*/
 const HeaderWithContext = withContext(Header);
 const CoursesWithContext = withContext(Courses);
 const CourseDetailsWithContext = withContext(CourseDetails);
@@ -40,6 +43,10 @@ function App() {
             <Route path="/signin" component={UserSignInWithContext} />
             <Route path="/signup" component={UserSignUpWithContextt} />
             <Route path="/signout" component={UserSignOutWithContext} />
+            <Route to="/notfound" component={NotFound} />
+            <Route to="/forbidden" component={Forbidden} />
+            <Route to="/error" component={UnhandledError} />
+            <Route> <Redirect to="/notfound"/> </Route>
           </Switch>
       </main>
     </Router>
