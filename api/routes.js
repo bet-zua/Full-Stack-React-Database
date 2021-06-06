@@ -9,13 +9,14 @@ const router = express.Router();
 
 // Route that returns the currently authenticated user and a 200 HTTP status code
 router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
-    const user = req.currentUser;
-  
-    res.status(200).json({
-        "firstName": user.firstName,
-        "lastName": user.lastName,
-        "emailAddress": user.emailAddress
-    });
+  let user = req.currentUser; 
+  let authenticatedUser = await User.findOne({
+      where: {id: user.id},
+      attributes: {
+          exclude: ['createdAt', 'updatedAt']
+      }
+  });
+  res.status(200).json(authenticatedUser);
 }));
   
 // Route that creates a new user.
