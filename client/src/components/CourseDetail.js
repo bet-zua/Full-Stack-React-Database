@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { NavLink } from 'react-router-dom';
 
-export default class Courses extends Component {
+export default class CourseDetail extends Component {
     state = {
         course: {},
         user: {},
@@ -87,7 +87,7 @@ export default class Courses extends Component {
                             <p>{course.estimatedTime}</p>
 
                             <h3 className="course--detail--title">Materials Needed</h3>
-                            <ReactMarkdown children={ course.materialsNeeded } />
+                            <ReactMarkdown  className="course--detail--list" children={ course.materialsNeeded } />
                         </div>
                     </div>
                 </form>
