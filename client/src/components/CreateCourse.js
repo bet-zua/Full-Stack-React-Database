@@ -87,7 +87,10 @@ export default class CreateCourse extends Component {
         });
     }
     
-    /* Send Create Course request via Data.js to the API*/
+    /* 
+     * Create course and return to Course List.
+     * Validation errors update state. All other errors reroute to error page.
+    */
     submit = () => {
         const context = this.props.context;
         const emailAddress = context.authenticatedUser.emailAddress; 

@@ -100,6 +100,9 @@ export default class UpdateCourse extends Component {
         )
     }
 
+   /* 
+     * Update the course details w/user input.
+    */
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -111,6 +114,10 @@ export default class UpdateCourse extends Component {
         });
     }
     
+    /* 
+     * Update the course w/user input, returning to the course details page after.
+     * Upon validation errors, state is updated. All other errors redirect to the error page.
+    */
     submit = () => {
         const { context } = this.props; 
         const id = this.props.match.params.id; 

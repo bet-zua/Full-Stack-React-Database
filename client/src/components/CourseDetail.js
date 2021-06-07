@@ -24,11 +24,9 @@ export default class CourseDetail extends Component {
               course: course,
               user: course.User
           })
-          //console.log(this.state.course)
-          //console.log(this.props.context.authenticatedUser);
         })
         .catch(err => {
-            this.props.history.push('/notfound');
+            this.props.history.push('/error');
         })
 
     }
