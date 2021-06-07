@@ -1,5 +1,5 @@
 /*
- * This component allows the user to create a new acconut.
+ * This component allows the user to create a new account.
  * The component also displays a 'Cancel' button returning the user to the default page.
 */
 import React, { Component } from 'react';
@@ -102,6 +102,7 @@ export default class UserSignIn extends Component {
     
       submit = () => {
         const { context } = this.props;
+        const { from } = this.props.location.state || { from: { pathname: '/' }};
         const { firstName, lastName, emailAddress, password } = this.state;
     
         //Create new user
@@ -119,7 +120,7 @@ export default class UserSignIn extends Component {
           } else {
             context.actions.signIn(emailAddress, password)
             .then(() => {
-              this.props.history.push('/');
+              this.props.history.push(from);
             })
     
           }
