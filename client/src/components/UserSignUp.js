@@ -30,7 +30,6 @@ export default class UserSignIn extends Component {
                         submitButtonText="Sign In"
                         elements={() => (
                         <React.Fragment>
-                            {/* <form> */}
                             <label>First Name
                                 <input
                                     id="firstName"
@@ -80,10 +79,9 @@ export default class UserSignIn extends Component {
                                     onChange={this.change}
                                     placeholder="Confirm Password" />
                             </label>    
-                            {/* </form> */}
                         </React.Fragment>
                     )} />
-                    <p>Already have a user account? <NavLink to="/signin">Click here!</NavLink> to sign in!</p>
+                    <p>Already have a user account? Click here to<NavLink to="/signin">to sign in!</NavLink></p>
                 </div>
             </main>
         )
@@ -102,7 +100,6 @@ export default class UserSignIn extends Component {
     
       submit = () => {
         const { context } = this.props;
-        const { from } = this.props.location.state || { from: { pathname: '/' }};
         const { firstName, lastName, emailAddress, password } = this.state;
     
         //Create new user
@@ -120,12 +117,12 @@ export default class UserSignIn extends Component {
           } else {
             context.actions.signIn(emailAddress, password)
             .then(() => {
-              this.props.history.push(from);
+              this.props.history.push('/');
             })
-    
           }
         })
         .catch(err => {
+          console.log(err);
           this.props.history.push('/error');
         })
       }

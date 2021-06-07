@@ -9,6 +9,7 @@ const router = express.Router();
 
 // Route that returns the currently authenticated user and a 200 HTTP status code
 router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
+  //return res.status(500).json;
   let user = req.currentUser; 
   let authenticatedUser = await User.findOne({
       where: {id: user.id},
@@ -23,7 +24,7 @@ router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
 router.post('/users', asyncHandler(async (req, res) => {
     try {
       await User.create(req.body);
-      res.status(200).location( '/' ).end();
+      res.status(201).location( '/' ).end();
     } catch (error) {
       if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
         const errors = error.errors.map(err => err.message);

@@ -14,6 +14,7 @@ export default class UpdateCourse extends Component {
         materialsNeeded: '',
         user: {},
         errors: [],
+        course: {}
     }
 
     componentDidMount(){
@@ -25,8 +26,9 @@ export default class UpdateCourse extends Component {
                 estimatedTime: course.description,
                 materialsNeeded: course.materialsNeeded,
                 user: course.User,
+                course: course
             });
-            if(course.userId !== this.state.user.id){
+            if(this.props.context.authenticatedUser.emailAddress !== this.state.user.emailAddress){
               this.props.history.push('/forbidden');
               }              
         })     
