@@ -7,6 +7,9 @@ html {
 }
 body {
     font-family: 'Work Sans', sans-serif;
+     /* The image used */
+   background: url("./background.jpg")  no-repeat center center fixed;
+   background-size: cover;
 }
 h2 {
     font-size: 1.5rem;
@@ -20,7 +23,7 @@ p {
     hyphens: auto;
 }
 a {
-    color: #939;
+    color: rgb(26, 9, 123);
     text-decoration: none;
 }
 .wrap {
@@ -29,7 +32,7 @@ a {
     padding: 0 1rem;
 }
 header {
-    background: #57496e;
+    background: #2c277d;
     color: #fff;
     padding: 1rem 0;
     margin-bottom: 2rem;
@@ -47,7 +50,7 @@ header li {
     font-size: .8rem;
 }
 header nav a {
-    color: #dbd;
+    color: rgb(210, 203, 254);
 }
 header nav a:hover {
     color: #fff;
@@ -62,7 +65,7 @@ header nav a:hover {
     margin-left: .5rem;
 }
 .course--module {
-    background: #7c689b;
+    background: #6c58d0;
     border-radius: .5rem;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -80,7 +83,7 @@ header nav a:hover {
     font-size: 1.25rem;
 }
 .course--add--module {
-    background: #ddd9e4;
+    background: #f2a6d4;
     color: #57496e;
     font-weight: 300;
     font-size: 1.25rem;
@@ -93,10 +96,10 @@ header nav a:hover {
 }
 .course--detail--title {
     padding-bottom: .25rem;
-    border-bottom: 1px solid #888;
+    border-bottom: 1px solid rgb(76, 46, 128);
     margin: 3rem 0 .5rem;
     font-size: .9rem;
-    color: #555;
+    color: rgb(26, 28, 86);
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -104,7 +107,7 @@ header nav a:hover {
     font-size: 2rem;
     margin-bottom: .5rem;
     font-weight: 700;
-    color: #47395e;
+    color: #2c1452;
 }
 .course--detail--list {
     font-weight: 300;
@@ -112,12 +115,12 @@ header nav a:hover {
     line-height: 1.5;
 }
 .actions--bar {
-    background: #e9e5f0;
+    background: #ad92dc;
     padding: 1rem 0;
     margin: -2rem 0 2rem;
 }
 .validation--errors {
-    background: #e9e5f0;
+    background: #e5ebf0;
     padding: 1rem;
     border-radius: .5rem;
     margin-bottom: 2.5rem;
@@ -155,9 +158,9 @@ label {
 input, textarea {
     display: block;
     width: 100%;
-    color: #332a40;
+    color: #201431;
     border-radius: .5rem;
-    border: 1px solid #8c789b;
+    border: 1px solid #332763;
     padding: .5rem;
     margin-bottom: 1rem;
     font-family: 'Work Sans', sans-serif;
@@ -167,7 +170,7 @@ textarea {
     min-height: 300px;
 }
 .button {
-    background: #7c689b;
+    background: #8f5fe3;
     color: #fff;
     font-size: 1rem;
     padding: .75rem 1.5rem;
@@ -184,24 +187,24 @@ textarea {
     margin-bottom: 0;
 }
 .button:not(.button-secondary):hover {
-    background: #63537d;
+    background: #9361e4;
     cursor: pointer;
 }
 .button-secondary {
-    color: #7c689b;
+    color: #382398;
     background: none;
-    box-shadow: 0 0 0 2px #7c689b inset;
+    box-shadow: 0 0 0 2px #382398 inset;
     transition: box-shadow 0.2s, color 0.2s;
 }
 .button-secondary:hover {
-    color: #63537d;
-    box-shadow: 0 0 0 2px #63537d inset;
+    color: #712478;
+    box-shadow: 0 0 0 2px #712478 inset;
     cursor: pointer;
 }
 input:focus, button:focus, .button:focus, textarea:focus {
     border: none;
     border-radius: 0;
-    outline: 2px solid #332a40;
+    outline: 2px solid #211632;
 }
 
 @media screen and (min-width: 600px) {
