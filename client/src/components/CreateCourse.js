@@ -11,7 +11,6 @@ export default class CreateCourse extends Component {
         description: '',
         estimatedTime: '',
         materialsNeeded: '',
-        authUserId: this.props.context.authenticatedUser.id,
         errors: [],
     }
 
@@ -22,7 +21,6 @@ export default class CreateCourse extends Component {
             description,
             estimatedTime,
             materialsNeeded,
-            authUserId,
             errors,
         } = this.state;
         const currUser = this.props.context.authenticatedUser;
