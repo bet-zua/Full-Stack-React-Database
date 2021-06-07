@@ -25,6 +25,7 @@ export default class CreateCourse extends Component {
             authUserId,
             errors,
         } = this.state;
+        const currUser = this.props.context.authenticatedUser;
         return(
             <main>
             <div className="wrap">
@@ -44,7 +45,7 @@ export default class CreateCourse extends Component {
                                 type="text"
                                 value={title} 
                                 onChange={this.change} />
-                                <p>By {authUserId.firstName} {authUserId.lastName} </p>
+                                <p>By {currUser.firstName} {currUser.lastName} </p>
                                 <label htmlFor="description">Course Description</label>
                                 <textarea 
                                 id="description" 

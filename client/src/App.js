@@ -19,7 +19,7 @@ import UnhandledError from './components/UnhandledError';
 import Forbidden from './components/Forbidden';
 import NotFound from './components/NotFound';
 
-/* Adding Context to the components*/
+/* Add Context to the components*/
 const HeaderWithContext = withContext(Header);
 const CoursesWithContext = withContext(Courses);
 const CourseDetailsWithContext = withContext(CourseDetails);
