@@ -1,6 +1,6 @@
-/* StateLESS Component
+/* 
  * Sign out the authenticated user 
- * Redirect the user to the defailt route.
+ * Redirects the user to the default route.
 */
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';

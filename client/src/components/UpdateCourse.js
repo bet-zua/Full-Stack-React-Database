@@ -1,4 +1,7 @@
-/*Stateful Component*/
+/*
+ * This component allows authorized users (course owners) to update course details.
+ * A cancel button allows users to return to the default page.
+*/
 import React, { Component } from 'react';
 import Form from './Form';
 
@@ -23,9 +26,12 @@ export default class UpdateCourse extends Component {
                 materialsNeeded: course.materialsNeeded,
                 user: course.User,
             });
+            if(course.userId !== this.state.user.id){
+              this.props.history.push('/forbidden');
+              }              
         })     
 		.catch(err => {
-            this.props.history.push('/error');
+            this.props.history.push('/notfound');
 		});
     }
 
@@ -38,55 +44,57 @@ export default class UpdateCourse extends Component {
             user,
             errors,
         } = this.state;
-        return (
-            <main>
-            <div className="wrap">
-                <h2>Update Course</h2>
-                <div className="main--flex">
-                    <Form 
-                        cancel={this.cancel}
-                        errors={errors}
-                        submit={this.submit}
-                        submitButtonText="Update Course"
-                        elements={() => ( 
-                            <React.Fragment>
-                                <label htmlFor="title">Course Title</label>
-                                <input 
-                                id="title" 
-                                name="title" 
-                                type="text"
-                                value={title} 
-                                onChange={this.change} />
-                                <p>By {user.firstName} {user.lastName} </p>
-                                <label htmlFor="description">Course Description</label>
-                                <textarea
-                                id="description"
-                                name="description"
-                                type="text"
-                                value={description}
-                                onChange={this.change}
-                                placeholder="Description" />
-                            </React.Fragment>
-                    )} />
-                    <div>
-                    <label htmlFor="estimatedTime">Estimated Time</label>
-                        <input 
-                        id="estimatedTime" 
-                        name="estimatedTime" 
-                        type="text"
-                        value={estimatedTime} 
-                        onChange={this.change} />
-                        <label htmlFor="materialsNeeded">Materials Needed</label>
-                        <textarea 
-                        id="materialsNeeded" 
-                        name="materialsNeeded" 
-                        type="text"
-                        value={materialsNeeded} 
-                        onChange={this.change} />
-                    </div>
+        return ( <div className="wrap">
+        <h2>Update Course</h2>
+        <Form 
+          cancel={this.cancel}
+          errors={errors}
+          submit={this.submit}
+          submitButtonText="Update Course"
+          elements={() => (
+            <React.Fragment>
+              <div className="main--flex">
+                <div>
+                  <label>Course Title
+                    <input 
+                      id="title" 
+                      name="title" 
+                      type="text"
+                      value={title} 
+                      onChange={this.change} />
+                  </label>
+                  <p>By {user.firstName} {user.lastName}</p>
+                  <label>Course Description
+                    <textarea 
+                      id="description" 
+                      name="description" 
+                      type="text"
+                      value={description || ''} 
+                      onChange={this.change} />
+                  </label>
                 </div>
-            </div>
-        </main>
+                <div>
+                  <label>Estimated Time
+                    <input 
+                      id="estimatedTime" 
+                      name="estimatedTime" 
+                      type="text"
+                      value={estimatedTime || ''} 
+                      onChange={this.change} />
+                  </label>
+                  <label>Materials Needed
+                    <textarea 
+                      id="materialsNeeded" 
+                      name="materialsNeeded"
+                      type="materialsNeeded"
+                      value={materialsNeeded || ''} 
+                      onChange={this.change} />
+                  </label>
+                </div>
+              </div>
+            </React.Fragment>
+          )} />
+        </div>
         )
     }
 
@@ -121,7 +129,6 @@ export default class UpdateCourse extends Component {
             if (errors.length) {
                 this.setState({ errors })
             } else {
-                console.log(`${title} is successfully updated!`);
                 this.props.history.push(`courses/${id}`)
             }
         })
@@ -131,7 +138,7 @@ export default class UpdateCourse extends Component {
     } 
 
     cancel = () => {
-        this.props.history.push('/');
+        this.props.history.push(`/courses/${this.props.match.params.id}`);
     }
 
 }

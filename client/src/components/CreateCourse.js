@@ -1,4 +1,7 @@
-/*Stateful Component*/
+/*
+ * This component renders the 'Create Course' page for authenticated users.
+ * Unauthenticated users are redirected to the default course list page. 
+*/
 import React, { Component } from 'react';
 import Form from './Form';
 
@@ -12,6 +15,7 @@ export default class CreateCourse extends Component {
         errors: [],
     }
 
+    /* Render Create Course page */
     render() {
         const {
             title,
@@ -72,6 +76,7 @@ export default class CreateCourse extends Component {
         )
     }
 
+    /* Set course details as user enters information */
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -83,6 +88,7 @@ export default class CreateCourse extends Component {
         });
     }
     
+    /* Send Create Course request via Data.js to the API*/
     submit = () => {
         const context = this.props.context;
         const emailAddress = context.authenticatedUser.emailAddress; 

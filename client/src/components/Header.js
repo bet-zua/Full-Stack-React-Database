@@ -1,4 +1,8 @@
-/*StateLESS Component*/
+/*
+ * Displays the top menu bar.
+ * If the user has been authenticated, a welcome message & 'Sign Out' button are displayed.
+ * Otherwise, 'Sign in" and 'Sign up' buttons are displayed.
+*/
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 

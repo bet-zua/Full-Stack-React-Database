@@ -43,9 +43,9 @@ function App() {
             <Route path="/signin" component={UserSignInWithContext} />
             <Route path="/signup" component={UserSignUpWithContextt} />
             <Route path="/signout" component={UserSignOutWithContext} />
-            <Route to="/notfound" component={NotFound} />
-            <Route to="/forbidden" component={Forbidden} />
-            <Route to="/error" component={UnhandledError} />
+            <Route path="/notfound" component={NotFound} />
+            <Route path="/forbidden" component={Forbidden} />
+            <Route path="/error" component={UnhandledError} />
             <Route> <Redirect to="/notfound"/> </Route>
           </Switch>
       </main>

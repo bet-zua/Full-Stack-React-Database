@@ -8,16 +8,17 @@ Step 4: Check!
 Step 5: 
 [x] Header
 [x] Courses
-[x] CourseDetails : deletion works now
+[x] CourseDetails
 [x] UserSignIn 
 [x] UserSignUp
 [x] UserSignOut
-[] CreateCourse : issue ?
-[] UpdateCourse : issue?
+[x] CreateCourse 
+[x] UpdateCourse 
 [x] PrivateRoute
-[x] NotFound.js - ONLY this being routed to??
-[x] Error.js - this routes to NotFound???
-[x] Forbidden.js - this routes to NotFound??
+Not Sure these are working perfectly??
+[x] NotFound.js 
+[x] Error.js 
+[x] Forbidden.js 
 
 CSS ISSUE:
 fixed by linking from index.js

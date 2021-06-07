@@ -1,4 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
+/* 
+ * HOC configures protected routes (those requiring authentication).
+*/
 import React from 'react';
 import { Consumer } from '../Context';
 import { Route, Redirect } from 'react-router-dom';

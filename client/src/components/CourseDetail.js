@@ -1,9 +1,12 @@
-/*Stateful Component*/
+/* 
+ * This component retreives course information from the API and renders a 'Course Detail' page. 
+ * If the user is authenticated, 'Delete' and 'Update' buttons are also displayed.
+*/
 import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { NavLink } from 'react-router-dom';
 
 export default class Courses extends Component {
-    //stateFUL
     state = {
         course: {},
         user: {},
@@ -11,7 +14,7 @@ export default class Courses extends Component {
         errors:[]
     }
 
-    //Retreive data from the REST API when those components are mounted
+    /* Retreive course details from the REST API */
     componentDidMount(){
         const context  =  this.props.context;
 
@@ -22,7 +25,7 @@ export default class Courses extends Component {
               user: course.User
           })
           //console.log(this.state.course)
-          console.log(this.props.context.authenticatedUser);
+          //console.log(this.props.context.authenticatedUser);
         })
         .catch(err => {
             this.props.history.push('/notfound');
@@ -30,7 +33,7 @@ export default class Courses extends Component {
 
     }
 
-    //send a delete request to the api's /api/course/:is route when delete button is clicked
+     /* Send delete request to /api/course/:id */
      deleteCourse () {
         const { context } = this.props;
 		const authUser = context.authenticatedUser;
@@ -49,8 +52,9 @@ export default class Courses extends Component {
         });
     }
 
+     /* Render Course Details page */
     render() {
-        const { course, user } = this.state; // always destructure for easy access!
+        const { course, user } = this.state; 
         const authUser = this.props.context.authenticatedUser; 
         return(
             <main>
@@ -76,16 +80,14 @@ export default class Courses extends Component {
                             <h3 className="course--detail--title">Course</h3>
                             <h4 className="course--name">{course.title}</h4>
                             <p>By {user.firstName} {user.lastName}</p>
-                            { course.description }
+                            <ReactMarkdown children={ course.description } />
                         </div>
                         <div>
                             <h3 className="course--detail--title">Estimated Time</h3>
                             <p>{course.estimatedTime}</p>
 
                             <h3 className="course--detail--title">Materials Needed</h3>
-                            <ul className="course--detail--list">
-                                {course.materialsNeeded}
-                            </ul>
+                            <ReactMarkdown children={ course.materialsNeeded } />
                         </div>
                     </div>
                 </form>

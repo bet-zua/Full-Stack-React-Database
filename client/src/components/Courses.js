@@ -1,19 +1,19 @@
-/* This is a stateful component so I will use a class Component */
+/* 
+ * This component retreives and renders the list of courses in the database.
+ * The component also renders a link to the "Create Course" page.
+*/
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default class Courses extends Component {
-
-
   state = {
     courses: []
   }
 
-
-  //retreive the list of courses from the REST API's /api/courses route
+  /* Retreive course list from the REST API */
   componentDidMount(){
     const context  =  this.props.context;
-    
+
     context.data.getCourses()
     .then( courses => {
       this.setState({
@@ -25,9 +25,9 @@ export default class Courses extends Component {
   }
   
 
-  //render the list of courses + course details + 'create course' screen
+  /* Render course list and Create Course button */
   render() {
-    const courses = this.state.courses;//destructuring for easy access
+    const courses = this.state.courses;
     return (
       <div className="wrap main--grid">
             {courses.map(course => 

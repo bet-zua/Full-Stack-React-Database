@@ -1,4 +1,7 @@
-/*Stateful Component*/
+/* 
+ * This component allows a user to sign in using existing account information.
+ * A 'Cancel' button allows the user to return to the main page.
+*/
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Form from './Form';
@@ -68,6 +71,7 @@ export default class UserSignIn extends Component {
     
       submit = () => {
         const { context } = this.props;
+        const { from } = this.props.location.state || { from: { pathname: '/' }};
         const { emailAddress, password } = this.state;
 
         context.actions.signIn(emailAddress, password)
@@ -77,7 +81,7 @@ export default class UserSignIn extends Component {
                 return { errors: ['Sign-in was unsuccessful']};
             });
         } else {
-            this.props.history.push('/');
+            this.props.history.push(from);
         }
         })
         .catch((err) => {

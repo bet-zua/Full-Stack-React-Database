@@ -1,6 +1,6 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from 'react';
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default (props) => {
   const {
     cancel,
@@ -34,6 +34,7 @@ export default (props) => {
   );
 }
 
+/* Display Validation Errors */
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;
 

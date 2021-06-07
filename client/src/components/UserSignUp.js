@@ -1,4 +1,7 @@
-/*Stateful Component*/
+/*
+ * This component allows the user to create a new acconut.
+ * The component also displays a 'Cancel' button returning the user to the default page.
+*/
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Form from './Form';
